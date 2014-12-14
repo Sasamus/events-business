@@ -9,8 +9,8 @@ import javax.persistence.Lob;
 
 /**
  * A Users entity used by a domain model
+ * 
  * @author Albin Engström
- * @since 2014-11-09
  */
 @Entity(name = "Users")
 public class User extends EntitySuperClass {

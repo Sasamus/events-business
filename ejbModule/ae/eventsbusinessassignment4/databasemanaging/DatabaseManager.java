@@ -1,26 +1,8 @@
 package ae.eventsbusinessassignment4.databasemanaging;
 
-import java.io.BufferedReader;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.sql.Timestamp;
-import java.util.Date;
-import java.util.Scanner;
-import java.util.Vector;
-
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.PersistenceUnit;
-
-import ae.eventsbusinessassignment4.entities.Comment;
-import ae.eventsbusinessassignment4.entities.Event;
-import ae.eventsbusinessassignment4.entities.Organizer;
-import ae.eventsbusinessassignment4.entities.OrganizerId;
-import ae.eventsbusinessassignment4.entities.User;
+import javax.persistence.PersistenceContext;
 
 /**
  * Manages the database
@@ -29,23 +11,17 @@ import ae.eventsbusinessassignment4.entities.User;
  */
 @Stateless
 public class DatabaseManager {
-	
-	/**
-	 * An EntitymanagerFactory
-	 */
-	@PersistenceUnit(unitName="EventManagement_alen1200")
-	private static EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("events");
-	
+
 	/**
 	 *  An EntityManager
 	 */
-	private static EntityManager entityManager = entityManagerFactory.createEntityManager();
+	@PersistenceContext EntityManager entityManager;
 	
 	/**
 	 * Read data from events.txt and adds it to the database
 	 */
 	public void readData() {
-		
+	/*	
 
 		//A vector for User objects
 		Vector<User> userVector = new Vector<User>();
@@ -392,6 +368,6 @@ public class DatabaseManager {
 					entityManager.getTransaction().rollback();
 				}
 			}
-		}
+		}*/
 	}
 }

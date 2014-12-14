@@ -15,7 +15,6 @@ import javax.persistence.ManyToOne;
  * An Comments entity used by a domain model
  * 
  * @author Albin Engström
- * @since 2014-11-09
  */
 @Entity(name = "Comments")
 public class Comment extends EntitySuperClass {
@@ -72,8 +71,7 @@ public class Comment extends EntitySuperClass {
 	 * An Event object as a foreign key
 	 */
 	@ManyToOne
-	@JoinColumn(table="Events", name="EVENTS_ID", referencedColumnName="ID")
-	//@Column(name = "Event")
+	@JoinColumn(table="Events", referencedColumnName="ID")
 	private Event event;
 	
 	/**
@@ -99,7 +97,6 @@ public class Comment extends EntitySuperClass {
 	 */
 	@ManyToOne
 	@JoinColumn(table="Users", referencedColumnName="ID")
-	//@Column(name = "User")
 	private User user;
 
 	/**

@@ -12,7 +12,6 @@ import javax.persistence.Id;
  * An Events entity used by a domain model
  * 
  * @author Albin Engström
- * @since 2014-11-09
  */
 @Entity(name = "Events")
 public class Event extends EntitySuperClass {
