@@ -24,34 +24,6 @@ public class OrganizerId implements Serializable {
 
 	}
 	
-	/* (non-Javadoc)
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
-	@Override
-	public boolean equals(Object obj){
-		
-		//Check if both's OrganizerId fields are equal
-		if(this.getEventId() == ((OrganizerId) obj).getEventId()
-				&& this.getUserId() == ((OrganizerId) obj).getUserId()){
-			
-			return true;
-		}
-		return false;
-	}
-	
-	
-	/* (non-Javadoc)
-	 * @see java.lang.Object#hashCode()
-	 */
-	@Override
-    public int hashCode() {
-		
-        HashCodeBuilder hcb = new HashCodeBuilder();
-        hcb.append(this.getEventId());
-        hcb.append(this.getUserId());
-        return hcb.toHashCode();
-    }
-	
 	/**
 	 * Hold an Event Id as a foreign key
 	 */
@@ -74,5 +46,36 @@ public class OrganizerId implements Serializable {
 	 */
 	public int getUserId() {
 		return userId;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + eventId;
+		result = prime * result + userId;
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		OrganizerId other = (OrganizerId) obj;
+		if (eventId != other.eventId)
+			return false;
+		if (userId != other.userId)
+			return false;
+		return true;
 	}
 }
