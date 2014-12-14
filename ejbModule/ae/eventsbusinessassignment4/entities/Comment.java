@@ -73,7 +73,7 @@ public class Comment extends EntitySuperClass {
 	 */
 	@ManyToOne
 	@JoinColumn(table="Events", referencedColumnName="ID")
-	@Column(name = "Event")
+	//@Column(name = "Event")
 	private Event event;
 	
 	/**
@@ -99,7 +99,7 @@ public class Comment extends EntitySuperClass {
 	 */
 	@ManyToOne
 	@JoinColumn(table="Users", referencedColumnName="ID")
-	@Column(name = "Submitter")
+	//@Column(name = "User")
 	private User user;
 
 	/**
