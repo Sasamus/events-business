@@ -72,7 +72,7 @@ public class Comment extends EntitySuperClass {
 	 * An Event object as a foreign key
 	 */
 	@ManyToOne
-	@JoinColumn(table="Events", referencedColumnName="ID")
+	@JoinColumn(table="Events", name="EVENTS_ID", referencedColumnName="ID")
 	//@Column(name = "Event")
 	private Event event;
 	
