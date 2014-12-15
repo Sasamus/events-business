@@ -52,22 +52,19 @@ public class Organizer implements Serializable {
 	/**
 	 * Hold an Event object as a foreign key
 	 */
-	@OneToOne
-	@JoinColumn(table="Events", referencedColumnName="ID")
-	@MapsId("eventId")
     private Event event;
 	
 	/**
 	 * Hold an User object as a foreign key
 	 */
-	@OneToOne
-	@JoinColumn(table="Users", referencedColumnName="ID")
-	@MapsId("userId")
     private User user;
 
 	/**
 	 * @return the event
 	 */
+	@OneToOne
+	@JoinColumn(name="Events", table="Events", referencedColumnName="ID")
+	@MapsId("eventId")
 	public Event getEvent() {
 		return event;
 	}
@@ -83,6 +80,9 @@ public class Organizer implements Serializable {
 	/**
 	 * @return the user
 	 */
+	@OneToOne
+	@JoinColumn(name="Users", table="Users", referencedColumnName="ID")
+	@MapsId("userId")
 	public User getUser() {
 		return user;
 	}
