@@ -70,8 +70,6 @@ public class Comment extends EntitySuperClass {
 	/**
 	 * An Event object as a foreign key
 	 */
-	@ManyToOne
-	@JoinColumn(table="Events", referencedColumnName="ID")
 	private Event event;
 	
 	/**
@@ -95,13 +93,13 @@ public class Comment extends EntitySuperClass {
 	/**
 	 * An User object as a foreign key
 	 */
-	@ManyToOne
-	@JoinColumn(table="Users", referencedColumnName="ID")
 	private User user;
 
 	/**
 	 * @return the event
 	 */
+	@ManyToOne
+	@JoinColumn(name="Events", table="Events", referencedColumnName="ID")
 	public Event getEvent() {
 		return event;
 	}
@@ -145,6 +143,8 @@ public class Comment extends EntitySuperClass {
 	/**
 	 * @return the user
 	 */
+	@ManyToOne
+	@JoinColumn(name="Users", table="Users", referencedColumnName="ID")
 	public User getUser() {
 		return user;
 	}

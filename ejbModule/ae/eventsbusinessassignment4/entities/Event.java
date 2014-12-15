@@ -7,13 +7,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * An Events entity used by a domain model
  * 
  * @author Albin Engström
  */
-@Entity(name = "Events")
+@Entity
+@Table(name="Events")
 public class Event extends EntitySuperClass {
 
 	/**

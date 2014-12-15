@@ -15,7 +15,8 @@ public class DatabaseManager {
 	/**
 	 *  An EntityManager
 	 */
-	@PersistenceContext EntityManager entityManager;
+	@PersistenceContext(unitName="EventManagement_alen1200") 
+	private EntityManager entityManager;
 	
 	/**
 	 * Read data from events.txt and adds it to the database
