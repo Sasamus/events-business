@@ -2,8 +2,9 @@ package ae.eventsbusinessassignment4.entities;
 
 import java.io.Serializable;
 
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
@@ -15,6 +16,7 @@ import javax.persistence.OneToOne;
  * @since 2014-11-09
  */
 @Entity(name = "Organizers")
+@IdClass(OrganizerId.class)
 public class Organizer implements Serializable {
 	
 	/**
@@ -32,22 +34,11 @@ public class Organizer implements Serializable {
 	/**
 	 * An OrganizerId object to hold the primary key
 	 */
-	@EmbeddedId
-	OrganizerId id;
-
-	/**
-	 * @return the id
-	 */
-	public OrganizerId getId() {
-		return id;
-	}
-
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(OrganizerId id) {
-		this.id = id;
-	}
+	//OrganizerId id;
+	@Id
+	int userId;
+	@Id
+	int eventId;
 	
 	/**
 	 * Hold an Event object as a foreign key
@@ -93,6 +84,34 @@ public class Organizer implements Serializable {
 	 */
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	/**
+	 * @return the userId
+	 */
+	public int getUserId() {
+		return userId;
+	}
+
+	/**
+	 * @param userId the userId to set
+	 */
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+
+	/**
+	 * @return the eventId
+	 */
+	public int getEventId() {
+		return eventId;
+	}
+
+	/**
+	 * @param eventId the eventId to set
+	 */
+	public void setEventId(int eventId) {
+		this.eventId = eventId;
 	}
 
 	

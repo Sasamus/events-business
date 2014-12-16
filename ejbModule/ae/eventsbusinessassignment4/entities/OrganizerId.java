@@ -2,15 +2,11 @@ package ae.eventsbusinessassignment4.entities;
 
 import java.io.Serializable;
 
-import javax.persistence.Embeddable;
-
 /**
  * A class to act as a composite primary key for the Organizer class
  * 
  * @author Albin Engström
- * @since 2014-11-09
  */
-@Embeddable
 public class OrganizerId implements Serializable { 
 	
 	/**

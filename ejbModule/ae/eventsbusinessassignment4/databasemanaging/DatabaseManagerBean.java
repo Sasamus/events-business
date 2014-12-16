@@ -18,7 +18,6 @@ import javax.persistence.PersistenceContext;
 import ae.eventsbusinessassignment4.entities.Comment;
 import ae.eventsbusinessassignment4.entities.Event;
 import ae.eventsbusinessassignment4.entities.Organizer;
-import ae.eventsbusinessassignment4.entities.OrganizerId;
 import ae.eventsbusinessassignment4.entities.User;
 
 /**
@@ -219,12 +218,6 @@ public class DatabaseManagerBean implements DatabaseManager {
 										
 										//Create a Organizer
 										Organizer organizer = new Organizer();
-										
-										//Create a OrganizerId
-										OrganizerId organizerId = new OrganizerId();
-										
-										//Set organizer's organizerId field
-										organizer.setId(organizerId);
 										
 										//Set Organizer's member variable event
 										organizer.setEvent(event);
