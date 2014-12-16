@@ -1,0 +1,30 @@
+Users:
+Örjan Sterner
+Felix Dobslaw
+Per Ekeroot
+Pär-Ove Forss
+Johan Timrén
+Fredrik Aletind
+Robert Jonsson
+
+Events:
+City Cleaning, Hamburg, Anual street cleaning in the streets of Lurup, 14/10/02 10:00 - 14/10/02 16:00, [Felix Dobslaw, Per Ekeroot]
+	Örjan Sterner (14/10/01 11:32): "I can't join, I have to help my daughter with her move to Stockholm."
+	Felix Dobslaw (14/10/01 11:36): "OK, but we count on you for the protest in December!"
+Collecting for SOS childrens villages, Hamburg, Collecting money to support the SOS childrens villages cause, 14/04/03 10:00 - 14/04/03 16:30, [Johan Timrén, Robert Jonsson]
+Food for the Homeless, Hamburg, Giving out food for the homeless in St. Georg, 14/12/06 10:00 - 14/12/06 16:00, [Örjan Sterner, Pär-Ove Forss, Per Ekeroot]
+Occupation Protest, Moskva, Protest against the imprisoning of Pussy Riots, 13/07/04 11:00 - 13/07/10 23:00, [Fredrik Aletind]
+	Johan Timrén (13/06/30 03:12): "I have bought the train tickets now, where do we meet up?"
+	Per Ekeroot (13/06/30 08:02): "I think Pär-Ove said in front of the Kreml."
+	Felix Dobslaw (13/06/30 08:43): "ACK"
+	Robert Jonsson (13/07/01 13:10): "Felix, do you really believe that a topless protest from us makes an impression on the Russian government?"
+	Felix Dobslaw (13/07/01 14:12): "Yes, this will be spread in social-media around the globe."
+City Cleaning, Östersund, Anual street cleaning on Frösön, 14/03/15 09:00 - 14/03/15 17:00, [Felix Dobslaw, Per Ekeroot]
+Collecting for SOS childrens villages, Östersund, Collecting money to support the SOS childrens villages cause, 14/02/27 08:30 - 14/02/27 12:30, [Robert Jonsson]
+	Fredrik Aletind (14/02/20 14:55): "Very good idea, Robert! Count me in."
+Food for the Homeless, Östersund, Giving out food for the homeless in Kyrkparken, 14/12/06 07:00 - 14/12/06 14:00, [Felix Dobslaw, Per Ekeroot]
+Occupation Protest, Östersund, Protest against the Swedish Government for it's treatment of the Julian Assange trial, 14/12/03 00:00 - 14/12/14 23:00, [Felix Dobslaw]
+	Pär-Ove Forss (14/11/01 03:12): "We are state-employees, should we really do this?"
+	Felix Dobslaw (14/11/01 04:43): "He has been isolated in the Ecuadorian ambassy for over 2 years now, we have to support his cause."
+	Per Ekeroot (14/11/01 08:01): "I agree with PO. We might loose our jobs over this."
+
