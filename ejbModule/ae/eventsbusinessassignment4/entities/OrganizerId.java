@@ -31,20 +31,6 @@ public class OrganizerId implements Serializable {
 	 */
     private int userId;
 
-	/**
-	 * @return the eventId
-	 */
-	public int getEventId() {
-		return eventId;
-	}
-
-	/**
-	 * @return the userId
-	 */
-	public int getUserId() {
-		return userId;
-	}
-
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */

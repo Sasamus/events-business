@@ -12,12 +12,12 @@ import javax.persistence.OneToOne;
 /**
  * An Organizers entity used by a domain model
  * 
- * @author Albin Engström b  
+ * @author Albin Engström
  */
 @Entity(name = "Organizers")
 @IdClass(OrganizerId.class)
 public class Organizer implements Serializable {
-	
+
 	/**
 	 * Generated UID
 	 */
@@ -29,64 +29,60 @@ public class Organizer implements Serializable {
 	public Organizer() {
 
 	}
-	
-	
+
+	/**
+	 * Constructor
+	 * 
+	 * @param event
+	 *            the Event
+	 * @param user
+	 *            the User
+	 */
+	public Organizer(Event event, User user) {
+		this.event = event;
+		this.user = user;
+	}
+
 	/**
 	 * Holds the User Id
 	 */
 	@Id
 	int userId;
-	
+
 	/**
 	 * Holds the Event Id
 	 */
 	@Id
 	int eventId;
-	
+
 	/**
 	 * Hold an Event object as a foreign key
 	 */
-    private Event event;
-	
+	private Event event;
+
 	/**
 	 * Hold an User object as a foreign key
 	 */
-    private User user;
+	private User user;
 
 	/**
 	 * @return the event
 	 */
 	@OneToOne
-	@JoinColumn(name="Events", table="Events", referencedColumnName="ID")
+	@JoinColumn(name = "Events", table = "Events", referencedColumnName = "ID")
 	@MapsId
 	public Event getEvent() {
 		return event;
 	}
 
 	/**
-	 * @param event the event to set
-	 */
-	public void setEvent(Event event) {
-		this.event = event;
-	}
-
-
-	/**
 	 * @return the user
 	 */
 	@OneToOne
-	@JoinColumn(name="Users", table="Users", referencedColumnName="ID")
+	@JoinColumn(name = "Users", table = "Users", referencedColumnName = "ID")
 	@MapsId
 	public User getUser() {
 		return user;
-	}
-
-
-	/**
-	 * @param user the user to set
-	 */
-	public void setUser(User user) {
-		this.user = user;
 	}
 
 	/**
@@ -97,26 +93,9 @@ public class Organizer implements Serializable {
 	}
 
 	/**
-	 * @param userId the userId to set
-	 */
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
-
-	/**
 	 * @return the eventId
 	 */
 	public int getEventId() {
 		return eventId;
 	}
-
-	/**
-	 * @param eventId the eventId to set
-	 */
-	public void setEventId(int eventId) {
-		this.eventId = eventId;
-	}
-
-	
 }
-
