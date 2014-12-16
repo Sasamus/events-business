@@ -12,8 +12,7 @@ import javax.persistence.OneToOne;
 /**
  * An Organizers entity used by a domain model
  * 
- * @author Albin Engström
- * @since 2014-11-09
+ * @author Albin Engström b  
  */
 @Entity(name = "Organizers")
 @IdClass(OrganizerId.class)
@@ -31,12 +30,16 @@ public class Organizer implements Serializable {
 
 	}
 	
+	
 	/**
-	 * An OrganizerId object to hold the primary key
+	 * Holds the User Id
 	 */
-	//OrganizerId id;
 	@Id
 	int userId;
+	
+	/**
+	 * Holds the Event Id
+	 */
 	@Id
 	int eventId;
 	
@@ -55,7 +58,7 @@ public class Organizer implements Serializable {
 	 */
 	@OneToOne
 	@JoinColumn(name="Events", table="Events", referencedColumnName="ID")
-	@MapsId("eventId")
+	@MapsId
 	public Event getEvent() {
 		return event;
 	}
@@ -73,7 +76,7 @@ public class Organizer implements Serializable {
 	 */
 	@OneToOne
 	@JoinColumn(name="Users", table="Users", referencedColumnName="ID")
-	@MapsId("userId")
+	@MapsId
 	public User getUser() {
 		return user;
 	}
