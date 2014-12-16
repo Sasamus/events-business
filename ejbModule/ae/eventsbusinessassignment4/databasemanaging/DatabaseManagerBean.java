@@ -335,58 +335,22 @@ public class DatabaseManagerBean implements DatabaseManager {
 		
 		//Sets all the Users in the userVector to persist
 		for(User user : userVector){
-			if(entityManager != null){
-				try {
-					entityManager.getTransaction().begin();
-					entityManager.persist(user);
-					entityManager.getTransaction().commit();
-				} catch (Exception e) {
-					e.printStackTrace();
-					entityManager.getTransaction().rollback();
-				}
-			}
+			entityManager.persist(user);
 		}
 
 		//Sets all the Events in the eventsVector to persist
 		for(Event event : eventVector){
-			if(entityManager != null){
-				try {
-					entityManager.getTransaction().begin();
-					entityManager.persist(event);
-					entityManager.getTransaction().commit();
-				} catch (Exception e) {
-					e.printStackTrace();
-					entityManager.getTransaction().rollback();
-				}
-			}
+			entityManager.persist(event);
 		}
 		
 		//Sets all the Comments in the commentVector to persist
 		for(Comment comment : commentVector){
-			if(entityManager != null){
-				try {
-					entityManager.getTransaction().begin();
-					entityManager.persist(comment);
-					entityManager.getTransaction().commit();
-				} catch (Exception e) {
-					e.printStackTrace();
-					entityManager.getTransaction().rollback();
-				}
-			}
+			entityManager.persist(comment);
 		}
 		
 		//Sets all the Organizers in the organizerVector to persist
 		for(Organizer organizer : organizerVector){
-			if(entityManager != null){
-				try {
-					entityManager.getTransaction().begin();
-					entityManager.persist(organizer);
-					entityManager.getTransaction().commit();
-				} catch (Exception e) {
-					e.printStackTrace();
-					entityManager.getTransaction().rollback();
-				}
-			}
+			entityManager.persist(organizer);
 		}
 	}
 }

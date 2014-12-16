@@ -63,7 +63,7 @@ public class Comment extends EntitySuperClass {
 	 * An int to hold the the id 
 	 */
 	@Id
-	@GeneratedValue(strategy = GenerationType.TABLE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="ID")
 	private int id;
 	
