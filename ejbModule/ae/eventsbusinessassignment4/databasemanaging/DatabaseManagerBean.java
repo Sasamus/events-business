@@ -10,8 +10,8 @@ import java.util.Date;
 import java.util.Scanner;
 import java.util.Vector;
 
-import javax.ejb.Remote;
-import javax.ejb.Stateless;
+import javax.ejb.LocalBean;
+import javax.ejb.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -25,9 +25,9 @@ import ae.eventsbusinessassignment4.entities.User;
  * 
  * @author Albin Engström
  */
-@Remote(DatabaseManager.class)
-@Stateless//(name = "DatabaseManagerBean")
-public class DatabaseManagerBean implements DatabaseManager {
+@Singleton(name="DatabaseManagerBean")
+@LocalBean
+public class DatabaseManagerBean {
 
 	/**
 	 * An EntityManager
@@ -38,7 +38,6 @@ public class DatabaseManagerBean implements DatabaseManager {
 	/**
 	 * Read data from events.txt and adds it to the database
 	 */
-	@Override
 	public void readData() {
 
 		// A vector for User objects
@@ -367,7 +366,7 @@ public class DatabaseManagerBean implements DatabaseManager {
 
 		// Sets all the Organizers in the organizerVector to persist
 		for (Organizer organizer : organizerVector) {
-			entityManager.persist(organizer);
+			//entityManager.persist(organizer);
 		}
 	}
 }
