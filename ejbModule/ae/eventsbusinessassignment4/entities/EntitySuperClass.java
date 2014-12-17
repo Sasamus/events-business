@@ -2,23 +2,22 @@ package ae.eventsbusinessassignment4.entities;
 
 import java.io.Serializable;
 
-
 /**
  * @author Albin Engström
- * @since 
+ * @since
  */
 @SuppressWarnings("serial")
-abstract public class EntitySuperClass implements Serializable{
-	
+abstract public class EntitySuperClass implements Serializable {
+
 	/**
 	 * Standard constructor
 	 */
 	public EntitySuperClass() {
 
 	}
-	
+
 	/**
-	 * An int to hold the the id 
+	 * An int to hold the the id
 	 */
 	private int id;
 

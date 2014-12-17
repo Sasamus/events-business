@@ -25,7 +25,7 @@ import ae.eventsbusinessassignment4.entities.User;
  * 
  * @author Albin Engström
  */
-@Singleton(name="DatabaseManagerBean")
+@Singleton(name = "DatabaseManagerBean")
 @LocalBean
 public class DatabaseManagerBean {
 
@@ -366,7 +366,7 @@ public class DatabaseManagerBean {
 
 		// Sets all the Organizers in the organizerVector to persist
 		for (Organizer organizer : organizerVector) {
-			//entityManager.persist(organizer);
+			entityManager.persist(organizer);
 		}
 	}
 }

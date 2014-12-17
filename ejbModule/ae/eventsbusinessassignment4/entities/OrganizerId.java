@@ -7,8 +7,8 @@ import java.io.Serializable;
  * 
  * @author Albin Engström
  */
-public class OrganizerId implements Serializable { 
-	
+public class OrganizerId implements Serializable {
+
 	/**
 	 * Generated
 	 */
@@ -20,18 +20,20 @@ public class OrganizerId implements Serializable {
 	public OrganizerId() {
 
 	}
-	
+
 	/**
 	 * Hold an Event Id as a foreign key
 	 */
-    private int eventId;
-    
+	private int eventId;
+
 	/**
 	 * Hold an User Id as a foreign key
 	 */
-    private int userId;
+	private int userId;
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -43,7 +45,9 @@ public class OrganizerId implements Serializable {
 		return result;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override

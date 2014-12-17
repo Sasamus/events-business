@@ -19,36 +19,34 @@ public class User extends EntitySuperClass {
 	 * Generated UID
 	 */
 	private static final long serialVersionUID = 4439601980436248257L;
-	
+
 	/**
-	 * An int to hold the the id 
+	 * An int to hold the the id
 	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="ID")
+	@Column(name = "ID")
 	private int id;
-	
+
 	/**
 	 * A string to hold the first name
 	 */
-	@Column(name="FirstName")
+	@Column(name = "FirstName")
 	private String firstName;
-	
 
 	/**
 	 * A string to hold the last name
 	 */
-	@Column(name="LastName")
+	@Column(name = "LastName")
 	private String lastName;
-	
+
 	/**
 	 * Holds a picture
 	 */
 	@Lob
-	@Column(name="Picture")
+	@Column(name = "Picture")
 	private byte[] picture;
-	
-	
+
 	/**
 	 * @return the firstName
 	 */
@@ -56,14 +54,13 @@ public class User extends EntitySuperClass {
 		return firstName;
 	}
 
-
 	/**
-	 * @param firstName the firstName to set
+	 * @param firstName
+	 *            the firstName to set
 	 */
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
-
 
 	/**
 	 * @return the lastName
@@ -72,14 +69,13 @@ public class User extends EntitySuperClass {
 		return lastName;
 	}
 
-
 	/**
-	 * @param lastName the lastName to set
+	 * @param lastName
+	 *            the lastName to set
 	 */
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-
 
 	/**
 	 * @return the id
@@ -88,7 +84,6 @@ public class User extends EntitySuperClass {
 		return id;
 	}
 
-
 	/**
 	 * @return the picture
 	 */
@@ -96,9 +91,9 @@ public class User extends EntitySuperClass {
 		return picture;
 	}
 
-
 	/**
-	 * @param picture the picture to set
+	 * @param picture
+	 *            the picture to set
 	 */
 	public void setPicture(byte[] picture) {
 		this.picture = picture;

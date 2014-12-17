@@ -15,57 +15,55 @@ import javax.persistence.Table;
  * @author Albin Engström
  */
 @Entity
-@Table(name="Events")
+@Table(name = "Events")
 public class Event extends EntitySuperClass {
 
 	/**
 	 * Generated UID
 	 */
 	private static final long serialVersionUID = 3927254114998417555L;
-	
 	/**
-	 * An int to hold the the id 
+	 * An int to hold the the id
 	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="ID")
+	@Column(name = "ID")
 	private int id;
-	
+
 	/**
 	 * A string to hold the title
 	 */
-	@Column(name="Title")
+	@Column(name = "Title")
 	private String eventTitle;
-	
 
 	/**
 	 * A string to hold the city
 	 */
-	@Column(name="City")
+	@Column(name = "City")
 	private String eventCity;
-	
+
 	/**
 	 * A timestamp to hold the start
 	 */
-	@Column(name="StartTime")
+	@Column(name = "StartTime")
 	private Timestamp eventStart;
-	
+
 	/**
 	 * A timestamp to hold the end
 	 */
-	@Column(name="EndTime")
+	@Column(name = "EndTime")
 	private Timestamp eventEnd;
-	
+
 	/**
 	 * A timestamp to hold the last update
 	 */
-	@Column(name="LastUpdate")
+	@Column(name = "LastUpdate")
 	private Timestamp lastUpdate;
-	
+
 	/**
 	 * A String to hold the event description
 	 */
-	@Column(name="Content")
+	@Column(name = "Content")
 	private String eventDescription;
 
 	/**
@@ -76,7 +74,8 @@ public class Event extends EntitySuperClass {
 	}
 
 	/**
-	 * @param eventTitle the eventTitle to set
+	 * @param eventTitle
+	 *            the eventTitle to set
 	 */
 	public void setEventTitle(String eventTitle) {
 		this.eventTitle = eventTitle;
@@ -90,7 +89,8 @@ public class Event extends EntitySuperClass {
 	}
 
 	/**
-	 * @param eventCity the eventCity to set
+	 * @param eventCity
+	 *            the eventCity to set
 	 */
 	public void setEventCity(String eventCity) {
 		this.eventCity = eventCity;
@@ -104,7 +104,8 @@ public class Event extends EntitySuperClass {
 	}
 
 	/**
-	 * @param eventStart the eventStart to set
+	 * @param eventStart
+	 *            the eventStart to set
 	 */
 	public void setEventStart(Timestamp eventStart) {
 		this.eventStart = eventStart;
@@ -118,7 +119,8 @@ public class Event extends EntitySuperClass {
 	}
 
 	/**
-	 * @param eventEnd the eventEnd to set
+	 * @param eventEnd
+	 *            the eventEnd to set
 	 */
 	public void setEventEnd(Timestamp eventEnd) {
 		this.eventEnd = eventEnd;
@@ -132,7 +134,8 @@ public class Event extends EntitySuperClass {
 	}
 
 	/**
-	 * @param lastUpdate the lastUpdate to set
+	 * @param lastUpdate
+	 *            the lastUpdate to set
 	 */
 	public void setLastUpdate(Timestamp lastUpdate) {
 		this.lastUpdate = lastUpdate;
@@ -146,7 +149,8 @@ public class Event extends EntitySuperClass {
 	}
 
 	/**
-	 * @param eventDescription the eventDescription to set
+	 * @param eventDescription
+	 *            the eventDescription to set
 	 */
 	public void setEventDescription(String eventDescription) {
 		this.eventDescription = eventDescription;
