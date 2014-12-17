@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 import java.util.Scanner;
 import java.util.Vector;
 
@@ -14,6 +15,7 @@ import javax.ejb.LocalBean;
 import javax.ejb.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import ae.eventsbusinessassignment4.entities.Comment;
 import ae.eventsbusinessassignment4.entities.Event;
@@ -34,6 +36,93 @@ public class DatabaseManagerBean {
 	 */
 	@PersistenceContext(unitName = "EventManagement_alen1200")
 	private EntityManager entityManager;
+	
+	/**
+	 * @return a list of all events
+	 */
+	public List<Event> getAllEvents(){
+		
+		//The query
+		Query queryAllEvents = entityManager
+				.createQuery("SELECT e FROM Events e");
+		
+		//Get results from query
+		@SuppressWarnings("unchecked")
+		List<Event> allEvents = queryAllEvents.getResultList();
+		return allEvents;
+		
+	}
+	
+	/**
+	 * Get all Events in a certain city
+	 * 
+	 * @param city the city
+	 * @return A list of the Events
+	 */
+	public List<Event> getCityEvents(String city){
+		
+		//The query
+		Query queryCityEvents = entityManager.createQuery
+				("SELECT e FROM Events e WHERE e.eventCity = " + "'" + city + "'");
+		
+		//Get results from query
+		@SuppressWarnings("unchecked")
+		List<Event> events = queryCityEvents.getResultList();
+		
+		//Return events
+		return events;
+	}
+	
+	/**
+	 * Get Organizers for a certain Event
+	 * 
+	 * @param event the Event
+	 * @return A list of the User that are Organizers
+	 */
+	public List<User> getEventOrganizers(Event event){
+		
+		//Get event's primary key
+		//Object id = entityManagerFactory.getPersistenceUnitUtil().getIdentifier(event);
+		int id = event.getId();
+		
+		//Query to get Organizers
+		Query queryEventOrganizers = entityManager.createQuery
+				("SELECT o FROM Organizers o WHERE o.event.id = " + id);
+		
+		//Get results from query
+		@SuppressWarnings("unchecked")
+		List<Organizer> organizers = queryEventOrganizers.getResultList();
+		
+		//Query string to get the User's connected to the Organizer's
+		String queryOrganizerUsersString = "SELECT u FROM Users u WHERE ";
+		
+		//Loop through organizers and add a WHERE condition for each Organizer
+		boolean first = true;
+		for(Organizer organizer : organizers){
+			//Get userId of organizer
+			id = organizer.getUser().getId();
+			
+			if(first){
+				//Append to string
+				queryOrganizerUsersString = queryOrganizerUsersString + "u.id = " + id;
+				first = false;
+			}
+			else{
+				//Append to string
+				queryOrganizerUsersString = queryOrganizerUsersString + " OR u.id = " + id;
+			}
+			
+		}
+		
+		//Query to get the User's connected to the Organizer's
+		Query queryOrganizerUsers = entityManager.createQuery(queryOrganizerUsersString);
+		
+		//Get results from query
+		@SuppressWarnings("unchecked")
+		List<User> organizerUsers = queryOrganizerUsers.getResultList();
+		
+		return organizerUsers;
+	}
 
 	/**
 	 * Read data from events.txt and adds it to the database
