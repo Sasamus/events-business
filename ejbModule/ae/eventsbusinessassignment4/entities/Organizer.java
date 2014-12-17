@@ -4,10 +4,10 @@ import java.io.Serializable;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
-import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
+
+
 
 /**
  * An Organizers entity used by a domain model
@@ -15,7 +15,6 @@ import javax.persistence.OneToOne;
  * @author Albin Engström
  */
 @Entity(name = "Organizers")
-@IdClass(OrganizerId.class)
 public class Organizer implements Serializable {
 
 	/**
@@ -44,33 +43,22 @@ public class Organizer implements Serializable {
 	}
 
 	/**
-	 * Holds the User Id
-	 */
-	@Id
-	int userId;
-
-	/**
-	 * Holds the Event Id
-	 */
-	@Id
-	int eventId;
-
-	/**
 	 * Hold an Event object as a foreign key
 	 */
+	@Id
 	private Event event;
 
 	/**
 	 * Hold an User object as a foreign key
 	 */
+	@Id
 	private User user;
 
 	/**
 	 * @return the event
 	 */
 	@OneToOne
-	@JoinColumn(name = "Events", table = "Events", referencedColumnName = "ID")
-	@MapsId
+	@JoinColumn(table = "Events", referencedColumnName = "ID")
 	public Event getEvent() {
 		return event;
 	}
@@ -79,23 +67,22 @@ public class Organizer implements Serializable {
 	 * @return the user
 	 */
 	@OneToOne
-	@JoinColumn(name = "Users", table = "Users", referencedColumnName = "ID")
-	@MapsId
+	@JoinColumn(table = "Users", referencedColumnName = "ID")
 	public User getUser() {
 		return user;
 	}
 
 	/**
-	 * @return the userId
+	 * @param event the event to set
 	 */
-	public int getUserId() {
-		return userId;
+	public void setEvent(Event event) {
+		this.event = event;
 	}
 
 	/**
-	 * @return the eventId
+	 * @param user the user to set
 	 */
-	public int getEventId() {
-		return eventId;
+	public void setUser(User user) {
+		this.user = user;
 	}
 }
