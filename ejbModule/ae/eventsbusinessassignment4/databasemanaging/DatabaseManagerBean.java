@@ -40,7 +40,7 @@ public class DatabaseManagerBean {
 	/**
 	 * @return a list of all events
 	 */
-	public List<Event> getAllEvents() {
+	public synchronized List<Event> getAllEvents() {
 
 		// The query
 		Query queryAllEvents = entityManager
@@ -56,7 +56,7 @@ public class DatabaseManagerBean {
 	/**
 	 * @return a list of all Users
 	 */
-	public List<User> getAllUsers() {
+	public synchronized List<User> getAllUsers() {
 
 		// The query
 		Query queryAllUsers = entityManager
@@ -76,7 +76,7 @@ public class DatabaseManagerBean {
 	 *            the User
 	 * @return A list of Comments
 	 */
-	public List<Comment> getUserComments(User user) {
+	public synchronized List<Comment> getUserComments(User user) {
 
 		// The query
 		Query queryUserComments = entityManager
@@ -103,7 +103,7 @@ public class DatabaseManagerBean {
 	 *            the User that organizes the Events
 	 * @return a List of Events
 	 */
-	public List<Event> getEventsUserOrganizes(boolean past, boolean future,
+	public synchronized List<Event> getEventsUserOrganizes(boolean past, boolean future,
 			User user) {
 
 		// A variable to hold the query
@@ -140,7 +140,7 @@ public class DatabaseManagerBean {
 	 * @param event
 	 *            Event to be added
 	 */
-	public void addEvent(Event event, User user) {
+	public synchronized void addEvent(Event event, User user) {
 
 		// Create an organizer
 		Organizer organizer = new Organizer(event, user);
@@ -158,7 +158,7 @@ public class DatabaseManagerBean {
 	 *            Id of the user to return
 	 * @return the User
 	 */
-	public User getUser(int id) {
+	public synchronized User getUser(int id) {
 
 		return entityManager.find(User.class, id);
 
@@ -171,7 +171,7 @@ public class DatabaseManagerBean {
 	 *            the city
 	 * @return A list of the Events
 	 */
-	public List<Event> getCityEvents(String city) {
+	public synchronized List<Event> getCityEvents(String city) {
 
 		// The query
 		Query queryCityEvents = entityManager
@@ -193,7 +193,7 @@ public class DatabaseManagerBean {
 	 *            the Event
 	 * @return A list of the User that are Organizers
 	 */
-	public List<User> getEventOrganizers(Event event) {
+	public synchronized List<User> getEventOrganizers(Event event) {
 
 		// Get event's primary key
 		// Object id =
@@ -245,7 +245,7 @@ public class DatabaseManagerBean {
 	/**
 	 * Read data from events.txt and adds it to the database
 	 */
-	public void readData() {
+	public synchronized void readData() {
 
 		// A vector for User objects
 		Vector<User> userVector = new Vector<User>();
