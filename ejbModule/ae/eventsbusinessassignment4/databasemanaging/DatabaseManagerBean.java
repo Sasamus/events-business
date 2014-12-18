@@ -36,204 +36,209 @@ public class DatabaseManagerBean {
 	 */
 	@PersistenceContext(unitName = "EventManagement_alen1200")
 	private EntityManager entityManager;
-	
+
 	/**
 	 * @return a list of all events
 	 */
-	public List<Event> getAllEvents(){
-		
-		//The query
+	public List<Event> getAllEvents() {
+
+		// The query
 		Query queryAllEvents = entityManager
 				.createQuery("SELECT e FROM Events e");
-		
-		//Get results from query
+
+		// Get results from query
 		@SuppressWarnings("unchecked")
 		List<Event> allEvents = queryAllEvents.getResultList();
 		return allEvents;
-		
+
 	}
-	
+
 	/**
 	 * @return a list of all Users
 	 */
-	public List<User> getAllUsers(){
-		
-		//The query
-		Query queryAllUsers = entityManager.createQuery("SELECT u FROM Users u");
-		
-		//Get results from query
+	public List<User> getAllUsers() {
+
+		// The query
+		Query queryAllUsers = entityManager
+				.createQuery("SELECT u FROM Users u");
+
+		// Get results from query
 		@SuppressWarnings("unchecked")
 		List<User> users = queryAllUsers.getResultList();
 		return users;
-		
+
 	}
-	
+
 	/**
 	 * Gets Comments made by User
 	 * 
-	 * @param user the User
+	 * @param user
+	 *            the User
 	 * @return A list of Comments
 	 */
-	public List<Comment> getUserComments(User user){
-		
-		//The query
-		Query queryUserComments = entityManager.createQuery("SELECT c FROM Comments c WHERE c.user.id =" + user.getId());
-		
-		//Get results from query
+	public List<Comment> getUserComments(User user) {
+
+		// The query
+		Query queryUserComments = entityManager
+				.createQuery("SELECT c FROM Comments c WHERE c.user.id ="
+						+ user.getId());
+
+		// Get results from query
 		@SuppressWarnings("unchecked")
 		List<Comment> comments = queryUserComments.getResultList();
-		
-		//Return comments
+
+		// Return comments
 		return comments;
 	}
-	
+
 	/**
-	 * Returns a list of Events an User organizes with variations depending on the arguments 
+	 * Returns a list of Events an User organizes with variations depending on
+	 * the arguments
 	 * 
-	 * @param past boolean to dictate if past events shall be returned
-	 * @param future boolean to dictate if future events shall be returned
-	 * @param user the User that organizes the Events
+	 * @param past
+	 *            boolean to dictate if past events shall be returned
+	 * @param future
+	 *            boolean to dictate if future events shall be returned
+	 * @param user
+	 *            the User that organizes the Events
 	 * @return a List of Events
 	 */
-	public List<Event> getEventsUserOrganizes(boolean past, boolean future, User user){
-		
-		//A variable to hold the query
+	public List<Event> getEventsUserOrganizes(boolean past, boolean future,
+			User user) {
+
+		// A variable to hold the query
 		Query queryEvents = null;
-		
-		//Create a query depending on arguments
-		if(past && future){
-			queryEvents = entityManager.createQuery("SELECT o.event FROM Organizers o WHERE o.user.id = " + user.getId());
-		}
-		else if(past){
-			queryEvents = entityManager.createQuery
-					("SELECT o.event FROM Organizers o WHERE o.user.id = " + user.getId() 
+
+		// Create a query depending on arguments
+		if (past && future) {
+			queryEvents = entityManager
+					.createQuery("SELECT o.event FROM Organizers o WHERE o.user.id = "
+							+ user.getId());
+		} else if (past) {
+			queryEvents = entityManager
+					.createQuery("SELECT o.event FROM Organizers o WHERE o.user.id = "
+							+ user.getId()
 							+ " AND o.event.eventStart < CURRENT_TIMESTAMP");
-		}
-		else if(future){
-			queryEvents = entityManager.createQuery
-					("SELECT o.event FROM Organizers o WHERE o.user.id = " + user.getId() 
+		} else if (future) {
+			queryEvents = entityManager
+					.createQuery("SELECT o.event FROM Organizers o WHERE o.user.id = "
+							+ user.getId()
 							+ " AND o.event.eventStart > CURRENT_TIMESTAMP");
 		}
-		
-		//Get results from query
+
+		// Get results from query
 		@SuppressWarnings("unchecked")
 		List<Event> events = queryEvents.getResultList();
-		
-		//Return events
-		return events;	
+
+		// Return events
+		return events;
 	}
-	
+
 	/**
 	 * Adds an Event to the database
 	 * 
-	 * @param event Event to be added
+	 * @param event
+	 *            Event to be added
 	 */
-	public void addEvent(Event event, User user){
-		// TODO: Uncomment and make sure works
-		/*
-		//Create an organizer
-		Organizer organizer = new Organizer();
-		
-		//Set's it's fields
-		OrganizerId organizerId = new OrganizerId();
-		organizer.setId(organizerId);
-		organizer.setEvent(event);
-		organizer.setUser(user);
-		
-		//Try to set event and organizer to persist	
-		if(entityManager != null){
-			try {
-				entityManager.getTransaction().begin();
-				entityManager.persist(event);
-				entityManager.flush();
-				entityManager.persist(organizer); 
-				entityManager.getTransaction().commit();
-			} catch (Exception e) {
-				e.printStackTrace();
-				entityManager.getTransaction().rollback();
-			}
-		}	
-		*/
+	public void addEvent(Event event, User user) {
+
+		// Create an organizer
+		Organizer organizer = new Organizer(event, user);
+
+		// Persist event
+		entityManager.persist(event);
+
+		// Persist organizer
+		entityManager.persist(organizer);
+
 	}
-	
+
 	/**
-	 * @param id Id of the user to return
+	 * @param id
+	 *            Id of the user to return
 	 * @return the User
 	 */
-	public User getUser(int id){
-		
+	public User getUser(int id) {
+
 		return entityManager.find(User.class, id);
-		
+
 	}
-	
+
 	/**
 	 * Get all Events in a certain city
 	 * 
-	 * @param city the city
+	 * @param city
+	 *            the city
 	 * @return A list of the Events
 	 */
-	public List<Event> getCityEvents(String city){
-		
-		//The query
-		Query queryCityEvents = entityManager.createQuery
-				("SELECT e FROM Events e WHERE e.eventCity = " + "'" + city + "'");
-		
-		//Get results from query
+	public List<Event> getCityEvents(String city) {
+
+		// The query
+		Query queryCityEvents = entityManager
+				.createQuery("SELECT e FROM Events e WHERE e.eventCity = "
+						+ "'" + city + "'");
+
+		// Get results from query
 		@SuppressWarnings("unchecked")
 		List<Event> events = queryCityEvents.getResultList();
-		
-		//Return events
+
+		// Return events
 		return events;
 	}
-	
+
 	/**
 	 * Get Organizers for a certain Event
 	 * 
-	 * @param event the Event
+	 * @param event
+	 *            the Event
 	 * @return A list of the User that are Organizers
 	 */
-	public List<User> getEventOrganizers(Event event){
-		
-		//Get event's primary key
-		//Object id = entityManagerFactory.getPersistenceUnitUtil().getIdentifier(event);
+	public List<User> getEventOrganizers(Event event) {
+
+		// Get event's primary key
+		// Object id =
+		// entityManagerFactory.getPersistenceUnitUtil().getIdentifier(event);
 		int id = event.getId();
-		
-		//Query to get Organizers
-		Query queryEventOrganizers = entityManager.createQuery
-				("SELECT o FROM Organizers o WHERE o.event.id = " + id);
-		
-		//Get results from query
+
+		// Query to get Organizers
+		Query queryEventOrganizers = entityManager
+				.createQuery("SELECT o FROM Organizers o WHERE o.event.id = "
+						+ id);
+
+		// Get results from query
 		@SuppressWarnings("unchecked")
 		List<Organizer> organizers = queryEventOrganizers.getResultList();
-		
-		//Query string to get the User's connected to the Organizer's
+
+		// Query string to get the User's connected to the Organizer's
 		String queryOrganizerUsersString = "SELECT u FROM Users u WHERE ";
-		
-		//Loop through organizers and add a WHERE condition for each Organizer
+
+		// Loop through organizers and add a WHERE condition for each Organizer
 		boolean first = true;
-		for(Organizer organizer : organizers){
-			//Get userId of organizer
+		for (Organizer organizer : organizers) {
+			// Get userId of organizer
 			id = organizer.getUser().getId();
-			
-			if(first){
-				//Append to string
-				queryOrganizerUsersString = queryOrganizerUsersString + "u.id = " + id;
+
+			if (first) {
+				// Append to string
+				queryOrganizerUsersString = queryOrganizerUsersString
+						+ "u.id = " + id;
 				first = false;
+			} else {
+				// Append to string
+				queryOrganizerUsersString = queryOrganizerUsersString
+						+ " OR u.id = " + id;
 			}
-			else{
-				//Append to string
-				queryOrganizerUsersString = queryOrganizerUsersString + " OR u.id = " + id;
-			}
-			
+
 		}
-		
-		//Query to get the User's connected to the Organizer's
-		Query queryOrganizerUsers = entityManager.createQuery(queryOrganizerUsersString);
-		
-		//Get results from query
+
+		// Query to get the User's connected to the Organizer's
+		Query queryOrganizerUsers = entityManager
+				.createQuery(queryOrganizerUsersString);
+
+		// Get results from query
 		@SuppressWarnings("unchecked")
 		List<User> organizerUsers = queryOrganizerUsers.getResultList();
-		
+
 		return organizerUsers;
 	}
 
