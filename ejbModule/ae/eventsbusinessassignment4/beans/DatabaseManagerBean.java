@@ -1,4 +1,4 @@
-package ae.eventsbusinessassignment4.databasemanaging;
+package ae.eventsbusinessassignment4.beans;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
@@ -12,7 +12,7 @@ import java.util.Scanner;
 import java.util.Vector;
 
 import javax.ejb.LocalBean;
-import javax.ejb.Singleton;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -27,7 +27,7 @@ import ae.eventsbusinessassignment4.entities.User;
  * 
  * @author Albin Engström
  */
-@Singleton(name = "DatabaseManagerBean")
+@Stateless(name = "DatabaseManagerBean")
 @LocalBean
 public class DatabaseManagerBean {
 
