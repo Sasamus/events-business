@@ -1,5 +1,6 @@
 package ae.eventsbusinessassignment4.entities;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 import javax.persistence.Column;
@@ -14,7 +15,7 @@ import javax.persistence.Id;
  * @author Albin Engström
  */
 @Entity(name="Events")
-public class Event extends EntitySuperClass {
+public class Event implements Serializable {
 
 	/**
 	 * Generated UID

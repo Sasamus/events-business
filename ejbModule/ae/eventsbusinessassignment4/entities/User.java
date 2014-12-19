@@ -1,5 +1,7 @@
 package ae.eventsbusinessassignment4.entities;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,7 +15,7 @@ import javax.persistence.Lob;
  * @author Albin Engström
  */
 @Entity(name = "Users")
-public class User extends EntitySuperClass {
+public class User implements Serializable {
 
 	/**
 	 * Generated UID

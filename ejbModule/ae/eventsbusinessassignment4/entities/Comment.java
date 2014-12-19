@@ -1,5 +1,6 @@
 package ae.eventsbusinessassignment4.entities;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Date;
 
@@ -17,7 +18,7 @@ import javax.persistence.ManyToOne;
  * @author Albin Engström
  */
 @Entity(name = "Comments")
-public class Comment extends EntitySuperClass {
+public class Comment implements Serializable{
 
 	/**
 	 * Generated UID
