@@ -1,5 +1,8 @@
 package ae.eventsbusinessassignment4.beans;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.ejb.LocalBean;
 import javax.ejb.Singleton;
 
@@ -13,17 +16,17 @@ public class CallCounterBean {
 	/**
 	 * Counts the calls to show EventsOverview
 	 */
-	int eventsOverviewCallCounter = 0;
+	private int eventsOverviewCallCounter = 0;
 
 	/**
-	 * Counts the calls to show UserProfile
+	 * Maps the call counter of each user to their Id
 	 */
-	int userProfileCallCounter = 0;
+	private Map<Integer, Integer> userMap = new HashMap<Integer, Integer>();
 
 	/**
 	 * Counts the calls to show AddEvent
 	 */
-	int addEventCallCounter = 0;
+	private int addEventCallCounter = 0;
 
 	/**
 	 * Default constructor.
@@ -49,8 +52,15 @@ public class CallCounterBean {
 	/**
 	 * Increments userProfileCallCounter
 	 */
-	public synchronized void incrementUserProfileCallCounter() {
-		userProfileCallCounter++;
+	public synchronized void incrementUserProfileCallCounter(int id) {
+		
+		if (userMap.containsKey(id)) {
+			int count = userMap.get(id);
+			userMap.put(id, count + 1);
+		} else {
+			userMap.put(id, 1);
+		}
+
 	}
 
 	/**
@@ -63,8 +73,13 @@ public class CallCounterBean {
 	/**
 	 * @return the userProfileCallCounter
 	 */
-	public int getUserProfileCallCounter() {
-		return userProfileCallCounter;
+	public int getUserProfileCallCounter(int id) {
+		if(userMap.get(id) == null){
+			return 0;
+		}
+		else{
+			return userMap.get(id);
+		}
 	}
 
 	/**
