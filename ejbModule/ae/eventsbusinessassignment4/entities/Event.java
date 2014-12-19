@@ -14,7 +14,7 @@ import javax.persistence.Id;
  * 
  * @author Albin Engström
  */
-@Entity(name="Events")
+@Entity(name = "Events")
 public class Event implements Serializable {
 
 	/**

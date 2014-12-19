@@ -103,8 +103,8 @@ public class DatabaseManagerBean {
 	 *            the User that organizes the Events
 	 * @return a List of Events
 	 */
-	public synchronized List<Event> getEventsUserOrganizes(boolean past, boolean future,
-			User user) {
+	public synchronized List<Event> getEventsUserOrganizes(boolean past,
+			boolean future, User user) {
 
 		// A variable to hold the query
 		Query queryEvents = null;

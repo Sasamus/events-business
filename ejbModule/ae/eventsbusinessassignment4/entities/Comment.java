@@ -18,7 +18,7 @@ import javax.persistence.ManyToOne;
  * @author Albin Engström
  */
 @Entity(name = "Comments")
-public class Comment implements Serializable{
+public class Comment implements Serializable {
 
 	/**
 	 * Generated UID
