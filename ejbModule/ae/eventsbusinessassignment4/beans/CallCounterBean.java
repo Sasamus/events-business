@@ -53,11 +53,15 @@ public class CallCounterBean {
 	 * Increments userProfileCallCounter
 	 */
 	public synchronized void incrementUserProfileCallCounter(int id) {
-		
+
+		// Check if id is mapped
 		if (userMap.containsKey(id)) {
+
+			// Increment the counter at id
 			int count = userMap.get(id);
 			userMap.put(id, count + 1);
 		} else {
+			// Map id with 1
 			userMap.put(id, 1);
 		}
 
@@ -74,10 +78,13 @@ public class CallCounterBean {
 	 * @return the userProfileCallCounter
 	 */
 	public int getUserProfileCallCounter(int id) {
-		if(userMap.get(id) == null){
+
+		// Check if id is mapped
+		if (userMap.get(id) == null) {
+			// Return 0 if it isn't
 			return 0;
-		}
-		else{
+		} else {
+			// Return it's value if it is
 			return userMap.get(id);
 		}
 	}
