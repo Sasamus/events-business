@@ -1,4 +1,4 @@
-events-business-assignment4
+events-business
 ===========================
 
-Assignment 4 version of events-business
+The business part of a JavaEE project called events
