@@ -133,20 +133,34 @@ public class DatabaseManagerBean {
 		// Return events
 		return events;
 	}
+	
+	/**
+	 * Adds an Event to the database
+	 * 
+	 * @param event The Event to persist
+	 */
+	public synchronized void addEvent(Event event) {
+
+		// Persist event
+		entityManager.persist(event);
+
+	}
 
 	/**
 	 * Adds an Event to the database
 	 * 
 	 * @param event
 	 *            Event to be added
+	 * @param user
+	 *            User to be added
 	 */
 	public synchronized void addEvent(Event event, User user) {
 
 		// Create an organizer
 		Organizer organizer = new Organizer(event, user);
 
-		// Persist event
-		entityManager.persist(event);
+		// Persist event with addEvent
+		addEvent(event);
 
 		// Persist organizer
 		entityManager.persist(organizer);
