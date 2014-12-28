@@ -577,7 +577,7 @@ public class DatabaseManagerBean {
 
 		// Sets all the Events in the eventsVector to persist
 		for (Event event : eventVector) {
-			entityManager.persist(event);
+			addEvent(event);
 		}
 
 		// Sets all the Comments in the commentVector to persist
