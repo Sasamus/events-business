@@ -143,6 +143,8 @@ public class DatabaseManagerBean {
 
 		// Persist event
 		entityManager.persist(event);
+		
+		
 
 	}
 
