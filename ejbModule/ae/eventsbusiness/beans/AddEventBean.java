@@ -1,4 +1,4 @@
-package ae.eventsbusinessassignment4.beans;
+package ae.eventsbusiness.beans;
 
 import java.sql.Timestamp;
 import java.util.Date;
@@ -8,8 +8,8 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.servlet.http.HttpServletRequest;
 
-import ae.eventsbusinessassignment4.entities.Event;
-import ae.eventsbusinessassignment4.entities.User;
+import ae.eventsbusiness.entities.Event;
+import ae.eventsbusiness.entities.User;
 
 /**
  * Session Bean implementation class AddEventBean

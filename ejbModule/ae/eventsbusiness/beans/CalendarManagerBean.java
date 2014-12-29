@@ -1,4 +1,4 @@
-package ae.eventsbusinessassignment4.beans;
+package ae.eventsbusiness.beans;
 
 import java.io.IOException;
 import java.util.Vector;

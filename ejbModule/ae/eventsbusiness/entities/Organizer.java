@@ -1,4 +1,4 @@
-package ae.eventsbusinessassignment4.entities;
+package ae.eventsbusiness.entities;
 
 import java.io.Serializable;
 

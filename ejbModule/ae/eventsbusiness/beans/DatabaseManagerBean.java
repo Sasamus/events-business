@@ -1,4 +1,4 @@
-package ae.eventsbusinessassignment4.beans;
+package ae.eventsbusiness.beans;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
@@ -17,10 +17,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import ae.eventsbusinessassignment4.entities.Comment;
-import ae.eventsbusinessassignment4.entities.Event;
-import ae.eventsbusinessassignment4.entities.Organizer;
-import ae.eventsbusinessassignment4.entities.User;
+import ae.eventsbusiness.entities.Comment;
+import ae.eventsbusiness.entities.Event;
+import ae.eventsbusiness.entities.Organizer;
+import ae.eventsbusiness.entities.User;
 
 /**
  * Manages the database
