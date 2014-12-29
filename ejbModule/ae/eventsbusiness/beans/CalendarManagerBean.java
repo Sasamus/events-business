@@ -27,7 +27,7 @@ public class CalendarManagerBean {
 	/**
 	 * Calendar Ids
 	 */
-	private Vector<String> calendarIds;
+	private Vector<String> calendarIds = new Vector<String>();
 
 	/**
 	 * The Client Id
