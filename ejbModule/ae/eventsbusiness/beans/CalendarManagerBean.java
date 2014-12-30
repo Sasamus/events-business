@@ -58,13 +58,13 @@ public class CalendarManagerBean {
 	 * Default constructor.
 	 */
 	public CalendarManagerBean() {
-		
+
 		// Create a NetHttpTransport object
 		httpTransport = new NetHttpTransport();
-		
-		// Create a JacksonFactory object 
+
+		// Create a JacksonFactory object
 		jsonFactory = new JacksonFactory();
-		
+
 		// Initialize calendars
 		calendars = initCalendarService();
 	}
@@ -75,13 +75,13 @@ public class CalendarManagerBean {
 	 * @return A Calendar object
 	 */
 	private Calendar initCalendarService() {
-		
+
 		// Create a GoogleCredential object
 		GoogleCredential credential = new GoogleCredential.Builder()
 				.setClientSecrets(CLIENT_ID, CLIENT_SECRET)
 				.setJsonFactory(jsonFactory).setTransport(httpTransport)
 				.build().setRefreshToken(REFRESH_TOKEN);
-		
+
 		// Create and return a Calendar object
 		return new Calendar.Builder(httpTransport, jsonFactory, credential)
 				.build();
@@ -93,10 +93,10 @@ public class CalendarManagerBean {
 	 * @throws IOException
 	 */
 	public void createCalendar() throws IOException {
-		
+
 		// Initialize calendar
 		com.google.api.services.calendar.model.Calendar calendar = new com.google.api.services.calendar.model.Calendar();
-		
+
 		// TODO: Change to be dynamic
 		calendar.setSummary("testCalendar");
 		calendar.setTimeZone("America/Los_Angeles");
@@ -104,7 +104,7 @@ public class CalendarManagerBean {
 		// Insert calendar to calendars
 		com.google.api.services.calendar.model.Calendar createdCalendar = calendars
 				.calendars().insert(calendar).execute();
-		
+
 		// Add the id of calendar to calendarIds
 		calendarIds.add(createdCalendar.getId());
 	}
@@ -115,11 +115,11 @@ public class CalendarManagerBean {
 	 * @throws IOException
 	 */
 	public void listAllCalendars() throws IOException {
-		
+
 		// Initialize calendarList
-		com.google.api.services.calendar.model.CalendarList calendarList = calendars.calendarList().list()
-				.execute();
-		
+		com.google.api.services.calendar.model.CalendarList calendarList = calendars
+				.calendarList().list().execute();
+
 		// TODO: Adapt to what it should actually do, below is just testing
 		System.out.println("Debug:");
 		for (CalendarListEntry calendarListEntry : calendarList.getItems())
@@ -132,13 +132,13 @@ public class CalendarManagerBean {
 	 * @throws IOException
 	 */
 	public void deleteAllCalendars() throws IOException {
-		
+
 		// Iterate through all Ids in calendarIds
-		for(String id : calendarIds){
-			
+		for (String id : calendarIds) {
+
 			// Delete the Calendar with id
 			calendars.calendars().delete(id).execute();
 		}
-		
+
 	}
 }
