@@ -97,8 +97,8 @@ public class CalendarManagerBean {
 		// Initialize calendar
 		com.google.api.services.calendar.model.Calendar calendar = new com.google.api.services.calendar.model.Calendar();
 
-		// TODO: Change to be dynamic
-		calendar.setSummary("testCalendar");
+		// TODO: Change to be dynamic, below is just for testing
+		calendar.setSummary("Hamburg");
 		calendar.setTimeZone("America/Los_Angeles");
 
 		// Insert calendar to calendars
@@ -120,7 +120,7 @@ public class CalendarManagerBean {
 		com.google.api.services.calendar.model.CalendarList calendarList = calendars
 				.calendarList().list().execute();
 
-		// TODO: Adapt to what it should actually do, below is just testing
+		// TODO: Adapt to what it should actually do, below is just for testing
 		System.out.println("Debug:");
 		for (CalendarListEntry calendarListEntry : calendarList.getItems())
 			System.out.println(calendarListEntry.getSummary());
