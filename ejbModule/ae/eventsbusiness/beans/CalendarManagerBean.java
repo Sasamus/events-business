@@ -99,7 +99,7 @@ public class CalendarManagerBean {
 
 		// TODO: Change to be dynamic, below is just for testing
 		calendar.setSummary("Hamburg");
-		calendar.setTimeZone("America/Los_Angeles");
+		calendar.setTimeZone("Europe/Stockholm");
 
 		// Insert calendar to calendars
 		com.google.api.services.calendar.model.Calendar createdCalendar = calendars

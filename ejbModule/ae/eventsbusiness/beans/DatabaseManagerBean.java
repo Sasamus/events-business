@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.Vector;
 
+import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -36,6 +37,12 @@ public class DatabaseManagerBean {
 	 */
 	@PersistenceContext(unitName = "EventManagement_alen1200")
 	private EntityManager entityManager;
+	
+	/**
+	 * A CalendarManagerBean
+	 */
+	@EJB(beanName = "CalendarManagerBean")
+	CalendarManagerBean calendarManagerBean;
 
 	/**
 	 * @return a list of all events
@@ -144,8 +151,7 @@ public class DatabaseManagerBean {
 		// Persist event
 		entityManager.persist(event);
 		
-		
-
+		// TODO: Use CalendarmanagerBean here to add event to the calendars, make sure both or none are added
 	}
 
 	/**
@@ -262,6 +268,13 @@ public class DatabaseManagerBean {
 	 * Read data from events.txt and adds it to the database
 	 */
 	public synchronized void readData() {
+		
+		// TODO: Remove, this is for testing
+//		try {
+//			calendarManagerBean.createCalendar();
+//		} catch (IOException e1) {
+//			e1.printStackTrace();
+//		}
 
 		// A vector for User objects
 		Vector<User> userVector = new Vector<User>();
