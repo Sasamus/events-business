@@ -1,6 +1,7 @@
 package ae.eventsbusiness.beans;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
@@ -97,6 +98,21 @@ public class CalendarManagerBean {
 
 		// Insert calendar to calendarService
 		calendarService.calendars().insert(calendar).execute();
+		
+		com.google.api.services.calendar.model.CalendarList calendarList = getCalendarList();
+		List<CalendarListEntry> items = calendarList.getItems();
+		
+		//This have worked, seemingly depending on outside factors
+		System.out.println("MyDebug1: " +  items.get(0).getId());
+		
+	}
+	
+	public String getCalendarId() throws IOException{
+		
+		com.google.api.services.calendar.model.CalendarList calendarList = getCalendarList();
+		List<CalendarListEntry> items = calendarList.getItems();
+		
+		return items.get(0).getId();
 	}
 
 	/**

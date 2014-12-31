@@ -263,6 +263,11 @@ public class DatabaseManagerBean {
 
 		return organizerUsers;
 	}
+	
+	public String getCalendarId() throws IOException{
+		
+		return calendarManagerBean.getCalendarId();
+	}
 
 	/**
 	 * Read data from events.txt and adds it to the database
@@ -270,11 +275,11 @@ public class DatabaseManagerBean {
 	public void readData() {
 		
 		// TODO: Remove, this is for testing
-//		try {
-//			calendarManagerBean.createCalendar();
-//		} catch (IOException e1) {
-//			e1.printStackTrace();
-//		}
+		try {
+			calendarManagerBean.createCalendar();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
 
 		// A vector for User objects
 		Vector<User> userVector = new Vector<User>();
