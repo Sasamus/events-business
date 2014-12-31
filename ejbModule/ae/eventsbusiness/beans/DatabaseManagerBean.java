@@ -47,7 +47,7 @@ public class DatabaseManagerBean {
 	/**
 	 * @return a list of all events
 	 */
-	public synchronized List<Event> getAllEvents() {
+	public List<Event> getAllEvents() {
 
 		// The query
 		Query queryAllEvents = entityManager
@@ -63,7 +63,7 @@ public class DatabaseManagerBean {
 	/**
 	 * @return a list of all Users
 	 */
-	public synchronized List<User> getAllUsers() {
+	public List<User> getAllUsers() {
 
 		// The query
 		Query queryAllUsers = entityManager
@@ -83,7 +83,7 @@ public class DatabaseManagerBean {
 	 *            the User
 	 * @return A list of Comments
 	 */
-	public synchronized List<Comment> getUserComments(User user) {
+	public List<Comment> getUserComments(User user) {
 
 		// The query
 		Query queryUserComments = entityManager
@@ -110,7 +110,7 @@ public class DatabaseManagerBean {
 	 *            the User that organizes the Events
 	 * @return a List of Events
 	 */
-	public synchronized List<Event> getEventsUserOrganizes(boolean past,
+	public List<Event> getEventsUserOrganizes(boolean past,
 			boolean future, User user) {
 
 		// A variable to hold the query
@@ -146,7 +146,7 @@ public class DatabaseManagerBean {
 	 * 
 	 * @param event The Event to persist
 	 */
-	public synchronized void addEvent(Event event) {
+	public void addEvent(Event event) {
 
 		// Persist event
 		entityManager.persist(event);
@@ -162,7 +162,7 @@ public class DatabaseManagerBean {
 	 * @param user
 	 *            User to be added
 	 */
-	public synchronized void addEvent(Event event, User user) {
+	public void addEvent(Event event, User user) {
 
 		// Create an organizer
 		Organizer organizer = new Organizer(event, user);
@@ -180,7 +180,7 @@ public class DatabaseManagerBean {
 	 *            Id of the user to return
 	 * @return the User
 	 */
-	public synchronized User getUser(int id) {
+	public User getUser(int id) {
 
 		return entityManager.find(User.class, id);
 
@@ -193,7 +193,7 @@ public class DatabaseManagerBean {
 	 *            the city
 	 * @return A list of the Events
 	 */
-	public synchronized List<Event> getCityEvents(String city) {
+	public List<Event> getCityEvents(String city) {
 
 		// The query
 		Query queryCityEvents = entityManager
@@ -215,7 +215,7 @@ public class DatabaseManagerBean {
 	 *            the Event
 	 * @return A list of the User that are Organizers
 	 */
-	public synchronized List<User> getEventOrganizers(Event event) {
+	public List<User> getEventOrganizers(Event event) {
 
 		// Get event's primary key
 		// Object id =
@@ -267,7 +267,7 @@ public class DatabaseManagerBean {
 	/**
 	 * Read data from events.txt and adds it to the database
 	 */
-	public synchronized void readData() {
+	public void readData() {
 		
 		// TODO: Remove, this is for testing
 //		try {
