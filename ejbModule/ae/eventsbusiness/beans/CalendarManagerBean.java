@@ -22,7 +22,7 @@ public class CalendarManagerBean {
 	/**
 	 * Calendars
 	 */
-	private Calendar calendars = null;
+	private Calendar calendarService = null;
 
 	/**
 	 * Calendar Ids
@@ -65,12 +65,12 @@ public class CalendarManagerBean {
 		// Create a JacksonFactory object
 		jsonFactory = new JacksonFactory();
 
-		// Initialize calendars
-		calendars = initCalendarService();
+		// Initialize calendarService
+		calendarService = initCalendarService();
 	}
 
 	/**
-	 * Initializes calendars
+	 * Initializes calendarService
 	 * 
 	 * @return A Calendar object
 	 */
@@ -101,8 +101,8 @@ public class CalendarManagerBean {
 		calendar.setSummary("Hamburg");
 		calendar.setTimeZone("Europe/Stockholm");
 
-		// Insert calendar to calendars
-		com.google.api.services.calendar.model.Calendar createdCalendar = calendars
+		// Insert calendar to calendarService
+		com.google.api.services.calendar.model.Calendar createdCalendar = calendarService
 				.calendars().insert(calendar).execute();
 
 		// Add the id of calendar to calendarIds
@@ -117,7 +117,7 @@ public class CalendarManagerBean {
 	public void listAllCalendars() throws IOException {
 
 		// Initialize calendarList
-		com.google.api.services.calendar.model.CalendarList calendarList = calendars
+		com.google.api.services.calendar.model.CalendarList calendarList = calendarService
 				.calendarList().list().execute();
 
 		// TODO: Adapt to what it should actually do, below is just for testing
@@ -137,7 +137,7 @@ public class CalendarManagerBean {
 		for (String id : calendarIds) {
 
 			// Delete the Calendar with id
-			calendars.calendars().delete(id).execute();
+			calendarService.calendars().delete(id).execute();
 		}
 
 	}
