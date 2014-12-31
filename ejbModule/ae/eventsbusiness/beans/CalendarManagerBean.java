@@ -93,18 +93,12 @@ public class CalendarManagerBean {
 		com.google.api.services.calendar.model.Calendar calendar = new com.google.api.services.calendar.model.Calendar();
 
 		// TODO: Change to be dynamic, below is just for testing
+		// TODO: Set to public?
 		calendar.setSummary("Hamburg");
 		calendar.setTimeZone("Europe/Stockholm");
 
 		// Insert calendar to calendarService
 		calendarService.calendars().insert(calendar).execute();
-		
-		com.google.api.services.calendar.model.CalendarList calendarList = getCalendarList();
-		List<CalendarListEntry> items = calendarList.getItems();
-		
-		//This have worked, seemingly depending on outside factors
-		System.out.println("MyDebug1: " +  items.get(0).getId());
-		
 	}
 	
 	public String getCalendarId() throws IOException{
@@ -112,7 +106,13 @@ public class CalendarManagerBean {
 		com.google.api.services.calendar.model.CalendarList calendarList = getCalendarList();
 		List<CalendarListEntry> items = calendarList.getItems();
 		
-		return items.get(0).getId();
+		for(CalendarListEntry cle : items){
+			if(cle.getSummary().equals("Hamburg")){
+				return cle.getId();
+			}
+		}
+		
+		return null;
 	}
 
 	/**
