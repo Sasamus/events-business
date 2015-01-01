@@ -87,31 +87,40 @@ public class CalendarManagerBean {
 	 * 
 	 * @throws IOException
 	 */
-	public void createCalendar() throws IOException {
+	public void createCalendar(String location) throws IOException {
 
 		// Initialize calendar
 		com.google.api.services.calendar.model.Calendar calendar = new com.google.api.services.calendar.model.Calendar();
 
-		// TODO: Change to be dynamic, below is just for testing
-		// TODO: Set to public?
-		calendar.setSummary("Hamburg");
+		// TODO: Set calendar to public?
+
+		// Set Summary and Location to location
+		calendar.setSummary(location);
+		calendar.setLocation(location);
+
+		// Set time zone
 		calendar.setTimeZone("Europe/Stockholm");
 
 		// Insert calendar to calendarService
 		calendarService.calendars().insert(calendar).execute();
 	}
-	
-	public String getCalendarId() throws IOException{
-		
+
+	public String getCalendarId(String location) throws IOException {
+
+		// Get a CalendarList
 		com.google.api.services.calendar.model.CalendarList calendarList = getCalendarList();
+
+		// Get items in calendarList
 		List<CalendarListEntry> items = calendarList.getItems();
-		
-		for(CalendarListEntry cle : items){
-			if(cle.getSummary().equals("Hamburg")){
-				return cle.getId();
+
+		// Return the id of the CalendarListEntry with Locations being location
+		for (CalendarListEntry calendarListEntry : items) {
+			if (calendarListEntry.getLocation().equals(location)) {
+				return calendarListEntry.getId();
 			}
 		}
-		
+
+		// Return null
 		return null;
 	}
 
@@ -137,7 +146,7 @@ public class CalendarManagerBean {
 	 * @throws IOException
 	 */
 	public void deleteAllCalendars() throws IOException {
-		
+
 		// Get a CalendarList
 		com.google.api.services.calendar.model.CalendarList calendarList = getCalendarList();
 
@@ -145,18 +154,20 @@ public class CalendarManagerBean {
 		for (CalendarListEntry calendarListEntry : calendarList.getItems()) {
 
 			// Delete the CalendarListEntry
-			calendarService.calendars().delete(calendarListEntry.getId()).execute();
+			calendarService.calendars().delete(calendarListEntry.getId())
+					.execute();
 		}
 	}
-	
+
 	/**
 	 * Gets a CalendarList from calendarService
 	 * 
 	 * @return a CalendarList
 	 * @throws IOException
 	 */
-	private com.google.api.services.calendar.model.CalendarList getCalendarList() throws IOException{
-		
+	private com.google.api.services.calendar.model.CalendarList getCalendarList()
+			throws IOException {
+
 		// Get and return a CalendarList
 		return calendarService.calendarList().list().execute();
 	}
