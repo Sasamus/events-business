@@ -105,6 +105,14 @@ public class CalendarManagerBean {
 		calendarService.calendars().insert(calendar).execute();
 	}
 
+	/**
+	 * Get a Calendar Id
+	 * 
+	 * @param location
+	 *            the location the Calendar represents
+	 * @return the id of the Calendar for location
+	 * @throws IOException
+	 */
 	public String getCalendarId(String location) throws IOException {
 
 		// Get a CalendarList
@@ -115,7 +123,7 @@ public class CalendarManagerBean {
 
 		// Return the id of the CalendarListEntry with Locations being location
 		for (CalendarListEntry calendarListEntry : items) {
-			if (calendarListEntry.getLocation().equals(location)) {
+			if (calendarListEntry.getSummary().equals(location)) {
 				return calendarListEntry.getId();
 			}
 		}

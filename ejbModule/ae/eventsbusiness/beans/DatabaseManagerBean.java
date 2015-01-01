@@ -37,7 +37,7 @@ public class DatabaseManagerBean {
 	 */
 	@PersistenceContext(unitName = "EventManagement_alen1200")
 	private EntityManager entityManager;
-	
+
 	/**
 	 * A CalendarManagerBean
 	 */
@@ -110,8 +110,8 @@ public class DatabaseManagerBean {
 	 *            the User that organizes the Events
 	 * @return a List of Events
 	 */
-	public List<Event> getEventsUserOrganizes(boolean past,
-			boolean future, User user) {
+	public List<Event> getEventsUserOrganizes(boolean past, boolean future,
+			User user) {
 
 		// A variable to hold the query
 		Query queryEvents = null;
@@ -140,18 +140,20 @@ public class DatabaseManagerBean {
 		// Return events
 		return events;
 	}
-	
+
 	/**
 	 * Adds an Event to the database
 	 * 
-	 * @param event The Event to persist
+	 * @param event
+	 *            The Event to persist
 	 */
 	public void addEvent(Event event) {
 
 		// Persist event
 		entityManager.persist(event);
-		
-		// TODO: Use CalendarmanagerBean here to add event to the calendars, make sure both or none are added
+
+		// TODO: Use CalendarmanagerBean here to add event to the calendars,
+		// make sure both or none are added
 	}
 
 	/**
@@ -263,23 +265,25 @@ public class DatabaseManagerBean {
 
 		return organizerUsers;
 	}
-	
-	public String getCalendarId() throws IOException{
-		
-		return calendarManagerBean.getCalendarId();
+
+	/**
+	 * Get a Calendar Id
+	 * 
+	 * @param location
+	 *            the location the calendar represents
+	 * @return the id of the calendar for location
+	 * @throws IOException
+	 */
+	public String getCalendarId(String location) throws IOException {
+
+		// Return id
+		return calendarManagerBean.getCalendarId(location);
 	}
 
 	/**
 	 * Read data from events.txt and adds it to the database
 	 */
 	public void readData() {
-		
-		// TODO: Remove, this is for testing
-		try {
-			calendarManagerBean.createCalendar();
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
 
 		// A vector for User objects
 		Vector<User> userVector = new Vector<User>();
@@ -403,6 +407,27 @@ public class DatabaseManagerBean {
 							// Read and set eventCity
 							event.setEventCity(stringScanner.useDelimiter(",")
 									.next().trim());
+
+							// Variable to keep track of if the city is new
+							boolean newCity = true;
+
+							// Check if the City is new
+							for (Event e : eventVector) {
+								if (e.getEventCity().equals(
+										event.getEventCity())) {
+									newCity = false;
+								}
+							}
+
+							// If the city is new, create a calendar for it
+							if (newCity) {
+								try {
+									calendarManagerBean.createCalendar(event
+											.getEventCity());
+								} catch (IOException e1) {
+									e1.printStackTrace();
+								}
+							}
 
 							// Read and set eventDescription
 							event.setEventDescription(stringScanner
