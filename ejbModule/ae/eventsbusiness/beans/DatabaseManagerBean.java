@@ -149,11 +149,31 @@ public class DatabaseManagerBean {
 	 */
 	public void addEvent(Event event) {
 
+		// Variable to keep track of if the city is new
+		boolean newCity = true;
+
+		// Check if the City is new
+		for (Event e : getAllEvents()) {
+			if (e.getEventCity().equals(event.getEventCity())) {
+				newCity = false;
+			}
+		}
+
 		// Persist event
 		entityManager.persist(event);
 
-		// TODO: Use CalendarmanagerBean here to add event to the calendars,
-		// make sure both or none are added
+		// If the city is new and event is persisted, create a calendar for it
+		if (newCity && entityManager.contains(event)) {
+			try {
+				calendarManagerBean.createCalendar(event.getEventCity());
+			} catch (IOException e1) {
+
+				// If the calendar creation failed, remove event from
+				// persistence
+				entityManager.remove(event);
+				e1.printStackTrace();
+			}
+		}
 	}
 
 	/**
@@ -166,15 +186,19 @@ public class DatabaseManagerBean {
 	 */
 	public void addEvent(Event event, User user) {
 
-		// Create an organizer
-		Organizer organizer = new Organizer(event, user);
-
 		// Persist event with addEvent
 		addEvent(event);
 
-		// Persist organizer
-		entityManager.persist(organizer);
+		// Don't create and persist and Organizer if event wasn't successfully
+		// persisted
+		if (entityManager.contains(event)) {
 
+			// Create an organizer
+			Organizer organizer = new Organizer(event, user);
+
+			// Persist organizer
+			entityManager.persist(organizer);
+		}
 	}
 
 	/**
@@ -407,27 +431,6 @@ public class DatabaseManagerBean {
 							// Read and set eventCity
 							event.setEventCity(stringScanner.useDelimiter(",")
 									.next().trim());
-
-							// Variable to keep track of if the city is new
-							boolean newCity = true;
-
-							// Check if the City is new
-							for (Event e : eventVector) {
-								if (e.getEventCity().equals(
-										event.getEventCity())) {
-									newCity = false;
-								}
-							}
-
-							// If the city is new, create a calendar for it
-							if (newCity) {
-								try {
-									calendarManagerBean.createCalendar(event
-											.getEventCity());
-								} catch (IOException e1) {
-									e1.printStackTrace();
-								}
-							}
 
 							// Read and set eventDescription
 							event.setEventDescription(stringScanner

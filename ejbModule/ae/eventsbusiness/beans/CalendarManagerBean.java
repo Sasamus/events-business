@@ -133,22 +133,6 @@ public class CalendarManagerBean {
 	}
 
 	/**
-	 * Lists all Calendars
-	 * 
-	 * @throws IOException
-	 */
-	public void listAllCalendars() throws IOException {
-
-		// Get a CalendarList
-		com.google.api.services.calendar.model.CalendarList calendarList = getCalendarList();
-
-		// TODO: Adapt to what it should actually do, below is just for testing
-		System.out.println("Debug:");
-		for (CalendarListEntry calendarListEntry : calendarList.getItems())
-			System.out.println(calendarListEntry.getSummary());
-	}
-
-	/**
 	 * Deletes all Calendars
 	 * 
 	 * @throws IOException
