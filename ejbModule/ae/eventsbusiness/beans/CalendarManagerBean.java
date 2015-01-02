@@ -10,6 +10,8 @@ import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.jackson.JacksonFactory;
 import com.google.api.services.calendar.Calendar;
+import com.google.api.services.calendar.model.AclRule;
+import com.google.api.services.calendar.model.AclRule.Scope;
 import com.google.api.services.calendar.model.CalendarListEntry;
 
 /**
@@ -92,7 +94,7 @@ public class CalendarManagerBean {
 		// Initialize calendar
 		com.google.api.services.calendar.model.Calendar calendar = new com.google.api.services.calendar.model.Calendar();
 
-		// TODO: Set calendar to public?
+		// TODO: Add events to calendar
 
 		// Set Summary and Location to location
 		calendar.setSummary(location);
@@ -103,6 +105,23 @@ public class CalendarManagerBean {
 
 		// Insert calendar to calendarService
 		calendarService.calendars().insert(calendar).execute();
+
+		// Create AclRule
+		AclRule rule = new AclRule();
+
+		// Create Scope
+		Scope scope = new Scope();
+
+		// Set scope to default, a public scope. Value to "", since no specific
+		// user or group is specified
+		scope.setType("default").setValue("");
+
+		// Set rule with scope and Role reader
+		rule.setScope(scope).setRole("reader");
+
+		// Insert rule
+		calendarService.acl().insert(getCalendarId(location), rule).execute();
+
 	}
 
 	/**
