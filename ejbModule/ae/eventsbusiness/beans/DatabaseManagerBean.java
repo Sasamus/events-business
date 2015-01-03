@@ -172,6 +172,14 @@ public class DatabaseManagerBean {
 				// persistence
 				entityManager.remove(event);
 				e1.printStackTrace();
+				return;
+			}
+
+			// Try to put event in the calendar
+			try {
+				calendarManagerBean.createEvent(event);
+			} catch (IOException e1) {
+				e1.printStackTrace();
 			}
 		}
 	}

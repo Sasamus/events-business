@@ -1,18 +1,24 @@
 package ae.eventsbusiness.beans;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
+import ae.eventsbusiness.entities.Event;
+
 import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.jackson.JacksonFactory;
+import com.google.api.client.util.DateTime;
 import com.google.api.services.calendar.Calendar;
 import com.google.api.services.calendar.model.AclRule;
 import com.google.api.services.calendar.model.AclRule.Scope;
 import com.google.api.services.calendar.model.CalendarListEntry;
+import com.google.api.services.calendar.model.EventDateTime;
 
 /**
  * Manages the Calendars
@@ -101,7 +107,7 @@ public class CalendarManagerBean {
 		calendar.setLocation(location);
 
 		// Set time zone
-		calendar.setTimeZone("Europe/Stockholm");
+		calendar.setTimeZone("UTC");
 
 		// Insert calendar to calendarService
 		calendarService.calendars().insert(calendar).execute();
@@ -122,6 +128,32 @@ public class CalendarManagerBean {
 		// Insert rule
 		calendarService.acl().insert(getCalendarId(location), rule).execute();
 
+	}
+
+	public void createEvent(Event event) throws IOException {
+
+		// Create an calendar Event
+		com.google.api.services.calendar.model.Event calendarEvent = new com.google.api.services.calendar.model.Event();
+
+		// Set Summary
+		calendarEvent.setSummary(event.getEventTitle());
+
+		// Create Date objects initialized to the start and end dates
+		Date startDate = new Date(event.getEventStart().getTime());
+		Date endDate = new Date(event.getEventEnd().getTime());
+
+		// Create and initialize a DateTime object for the start of the event
+		DateTime start = new DateTime(startDate, TimeZone.getTimeZone("UTC"));
+		calendarEvent.setStart(new EventDateTime().setDateTime(start));
+
+		// Create and initialize a DateTime object for the end of the event
+		DateTime end = new DateTime(endDate, TimeZone.getTimeZone("UTC"));
+		calendarEvent.setEnd(new EventDateTime().setDateTime(end));
+
+		// Insert calendarEvent to the calendar
+		calendarService.events()
+				.insert(getCalendarId(event.getEventCity()), calendarEvent)
+				.execute();
 	}
 
 	/**
