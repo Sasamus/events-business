@@ -174,6 +174,9 @@ public class DatabaseManagerBean {
 				e1.printStackTrace();
 				return;
 			}
+		}
+
+		if (entityManager.contains(event)) {
 
 			// Try to put event in the calendar
 			try {
