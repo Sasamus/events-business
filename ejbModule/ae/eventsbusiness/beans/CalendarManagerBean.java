@@ -100,8 +100,6 @@ public class CalendarManagerBean {
 		// Initialize calendar
 		com.google.api.services.calendar.model.Calendar calendar = new com.google.api.services.calendar.model.Calendar();
 
-		// TODO: Add events to calendar
-
 		// Set Summary and Location to location
 		calendar.setSummary(location);
 		calendar.setLocation(location);
